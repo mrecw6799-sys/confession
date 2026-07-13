@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something Special ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#8E2DE2,#4A00E0);
+overflow:hidden;
+}
+
+.container{
+width:90%;
+max-width:500px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 25px rgba(0,0,0,.2);
+position:relative;
+z-index:2;
+}
+
+h1{
+color:white;
+margin-bottom:15px;
+}
+
+p{
+color:white;
+font-size:18px;
+margin-bottom:20px;
+}
+
+img{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid white;
+margin-bottom:20px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+margin:10px;
+transition:.3s;
+}
+
+#yes{
+background:#ff4d6d;
+color:white;
+}
+
+#yes:hover{
+transform:scale(1.1);
+}
+
+#no{
+background:white;
+color:#ff4d6d;
+position:relative;
+}
+
+#message{
+display:none;
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="images/Screenshot (175).png" alt="Screenshot">
+
+<h1>Kannaaaaaa❤️</h1>
+
+<p>
+I made something special just for you...
+</p>
+
+<h2 id="question" style="color:white;margin-bottom:20px;">
+Are you ready? 😊
+</h2>
+
+<button id="yes">YES ❤️</button>
+<button id="no">NO 😅</button>
+
+<div id="message">
+🎉 YAY!! ❤️<br><br>
+You just made me the happiest person alive! 💖
+</div>
+
+</div>
+
+<script>
+
+// -------- QUESTIONS --------
+
+const questions = [
+"Are you ready? 😊",
+"Do you trust me? ❤️",
+"Can I ask you something? 🥺",
+"Do you like surprises? 🎁",
+"Will you stay till the end? 💖",
+"Final Question ❤️"
+];
+
+let currentQuestion = 0;
+
+// Moving No button
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",()=>{
+
+const x=Math.random()*300-150;
+
+const y=Math.random()*300-150;
+
+no.style.transform=`translate(${x}px,${y}px)`;
+
+});
+
+// Yes Button
+
+document.getElementById("yes").onclick=function(){
+
+currentQuestion++;
+
+if(currentQuestion < questions.length){
+
+document.getElementById("question").innerHTML =
+questions[currentQuestion];
+
+}
+else{
+
+document.getElementById("message").style.display="block";
+
+document.getElementById("yes").style.display="none";
+
+document.getElementById("no").style.display="none";
+
+confetti();
+
+}
+
+}
+
+// Floating Hearts
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(Math.random()*20+15)+"px";
+
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6000);
+
+}
+
+setInterval(createHeart,300);
+
+// Confetti
+
+function confetti(){
+
+for(let i=0;i<150;i++){
+
+const c=document.createElement("div");
+
+c.innerHTML=["🎉","❤️","✨","💖"][Math.floor(Math.random()*4)];
+
+c.style.position="fixed";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.top="-20px";
+
+c.style.fontSize=(Math.random()*20+15)+"px";
+
+c.style.transition="4s linear";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+
+c.style.top="110vh";
+
+},100);
+
+setTimeout(()=>{
+
+c.remove();
+
+},4000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
